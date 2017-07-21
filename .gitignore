@@ -1,0 +1,13 @@
+/bin/
+/.classpath
+/.project
+/libs
+/jnilib
+/fix itunes.reg
+/libScriptingBridgeCalls.jnilib
+/libProcessAccess.dll
+/libProcessAccess64.dll
+/JACOB_README.txt
+/JACOB_LICENSE.TXT
+/jacob-1.17-M2-x86.dll
+/jacob-1.17-M2-x64.dll
