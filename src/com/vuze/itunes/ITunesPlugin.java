@@ -135,11 +135,11 @@ ITunesPlugin
 			}
 		}catch( Throwable e ){
 			
-			init_error = new IPCException( "Failed to set library path", e );
+			//init_error = new IPCException( "Failed to set library path", e );
 			
-			log( "Initialisation failed", e );
+			//log( "Initialisation failed", e );
 			
-			return;
+			//return;
 		}
 			
 		plugin_interface.addListener(
@@ -215,6 +215,12 @@ ITunesPlugin
 				}
 			}
 		}.start();
+	}
+	
+	public PluginInterface
+	getPluginInterface()
+	{
+		return( plugin_interface );
 	}
 	
 	public Map<String,Object>

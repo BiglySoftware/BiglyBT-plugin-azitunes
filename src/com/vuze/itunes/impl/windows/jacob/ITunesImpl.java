@@ -13,6 +13,7 @@ import com.jacob.activeX.ActiveXComponent;
 import com.jacob.com.ComFailException;
 import com.jacob.com.ComThread;
 import com.jacob.com.Dispatch;
+import com.jacob.com.LibraryLoader;
 import com.vuze.itunes.ITunes;
 import com.vuze.itunes.ITunesCommunicationException;
 import com.vuze.itunes.ITunesEventListener;
@@ -43,6 +44,14 @@ public class ITunesImpl extends DispatchObject implements ITunes {
 		super(null);
 
 		plugin	= _plugin;
+		
+		String dir_name = plugin.getPluginInterface().getPluginDirectoryName();
+		
+		System.setProperty( "bigly.processaccess.library.path", dir_name ); 
+				
+		String jacob_dll_name = dir_name + File.separator + LibraryLoader.getPreferredDLLName() + ".dll";
+		
+		System.setProperty( "jacob.dll.path", jacob_dll_name );
 		
 		isInstalled = false;
 		
