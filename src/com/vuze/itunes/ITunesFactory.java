@@ -50,10 +50,9 @@ public class ITunesFactory {
 			} catch (Exception e) {
 				throw new UnsupportedOperationException("failed to load the windows iTunes library",e);
 			}
+		}else{
+			return( new com.vuze.itunes.impl.linux.ITunesImpl());
 		}
-		
-		throw new UnsupportedOperationException("os not supported : no iTunes library.");
-		
 	}
 	
 	public static void main(String[] args) {
