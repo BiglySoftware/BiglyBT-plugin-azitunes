@@ -29,6 +29,7 @@ import java.util.*;
 
 import com.biglybt.core.util.AESemaphore;
 import com.biglybt.core.util.AEThread2;
+import com.biglybt.core.util.Constants;
 import com.biglybt.core.util.Debug;
 import com.biglybt.core.util.SystemTime;
 import com.biglybt.pif.*;
@@ -125,13 +126,26 @@ ITunesPlugin
 
 			System.setProperty( "java.library.path", newLibPath );
 			
-			Field fieldSysPath = ClassLoader.class.getDeclaredField( "sys_paths" );
-
-			if ( fieldSysPath != null) {
+			if ( Constants.isJava10OrHigher ){
 				
-				fieldSysPath.setAccessible(true);
-
-				fieldSysPath.set( System.class.getClassLoader(), null );
+					// major issue with the hack below on Java 11+ since they messed with class loading - causes all native
+					// librarys to fail to load once the var is cleared...
+				
+					// given that iTunes is pretty much dead I'm not going to look for a work around unless someone gives
+					// good reason
+				
+				log( "NOT attempting class loader hack, sorry" );
+				
+			}else{
+				
+				Field fieldSysPath = ClassLoader.class.getDeclaredField( "sys_paths" );
+	
+				if ( fieldSysPath != null) {
+					
+					fieldSysPath.setAccessible(true);
+	
+					fieldSysPath.set( System.class.getClassLoader(), null );
+				}
 			}
 		}catch( Throwable e ){
 			
